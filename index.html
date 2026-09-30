@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<title>Farm Motor Control</title>
+<style>
+body{font-family:Arial;text-align:center;padding:20px;background:#f5f5f5}
+.card{max-width:400px;margin:auto;padding:25px;border-radius:20px;background:white}
+h1{font-size:24px}
+button{width:100%;padding:18px;margin:10px 0;border:0;border-radius:14px;color:white;font-size:18px;font-weight:bold}
+.on{background:#16a34a}
+.off{background:#dc2626}
+.status{background:#2563eb}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🌾 FARM MOTOR CONTROL</h1>
+<p>⚙️ Motor Control Panel</p>
+
+<button class="on" onclick="sendCommand('motor_on')">
+🟢 MOTOR ON
+</button>
+
+<button class="off" onclick="sendCommand('motor_off')">
+🔴 MOTOR OFF
+</button>
+
+<button class="status" onclick="sendCommand('status')">
+🔄 CHECK STATUS
+</button>
+
+</div>
+
+<script>
+const tg=window.Telegram.WebApp;
+tg.ready();
+tg.expand();
+
+function sendCommand(command){
+const data={action:command};
+tg.HapticFeedback.impactOccurred("medium");
+tg.sendData(JSON.stringify(data));
+}
+</script>
+</body>
+</html>
